@@ -1,6 +1,8 @@
 <style>
-  header { display: none !important; }
-  .markdown-body { margin-top: 40px; }
+  .markdown-body > header,
+  #lia-agrifood-title-h1 {
+      display: none !important;
+  }
 </style>
 
 # LIA+ AgriFood

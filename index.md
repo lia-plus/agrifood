@@ -1,3 +1,8 @@
+<style>
+  header { display: none !important; }
+  .markdown-body { margin-top: 40px; }
+</style>
+
 # LIA+ AgriFood
 *Inteligência Artificial e Ciência de Dados transformando os Sistemas Agroalimentares.*
 

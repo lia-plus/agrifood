@@ -5,11 +5,11 @@ O LIA+ AgriFood é um núcleo de pesquisa e desenvolvimento integrado às inicia
 ## Nossa Equipe
 
 **Prof. Dr. Gabriel Sarries**
-*Pesquisador Principal / Coordenador Geral*
+*Pesquisador Principal / Coordenador Geral*<br>
 Professor da ESALQ/USP com foco em Inteligência Artificial, Robótica e Ciência de Dados. É pesquisador afiliado no SHINE/Harvard University e atua no ecossistema internacional pelo CAU-USP Joint College (China). Mantém atuação estratégica em inovação tecnológica com projetos em parceria com a EMBRAPA e o CENA/USP.
 
 **Luciano Silveira**
-*Coordenador Técnico*
+*Coordenador Técnico*<br>
 Cientista de Alimentos, Mestre em Física do Ambiente Agrícola e Doutor em Engenharia de Sistemas Agrícolas pela ESALQ/USP. Possui base computacional estruturada no ICMC e na Poli/USP, e está em fase final da graduação em Engenharia da Computação pela Univesp. Foca na aplicação de Ciência de Dados e engenharia de software leve e eficiente para a otimização de processos agroalimentares.
 
 ---

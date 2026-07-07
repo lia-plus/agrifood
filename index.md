@@ -1,4 +1,4 @@
-O LIA+ AgriFood (Laboratório de Inteligência Artificial e outras Tecnologias Disruptivas Aplicadas a Sistemas Agroalimentares) é um núcleo de pesquisa e desenvolvimento vinculado à ESALQ/USP. Nossa missão é atuar na fronteira do conhecimento agronômico e tecnológico, traduzindo dados complexos em soluções computacionais aplicáveis para a agricultura e a ciência dos alimentos. Unimos o rigor analítico da universidade com a agilidade da inovação tecnológica para resolver os desafios reais da cadeia agroalimentar moderna.
+O LIA+ AgriFood é um núcleo de pesquisa e desenvolvimento integrado às iniciativas **IA+** dos departamentos **LCE** e **LES** da **ESALQ/USP**, com o apoio estratégico do **CNPq**. Nossa missão é atuar na fronteira do conhecimento agronômico e tecnológico, traduzindo dados complexos em soluções computacionais aplicáveis para a engenharia de toda a cadeia produtiva. Unimos o rigor analítico da universidade com a agilidade da inovação tecnológica para resolver os desafios reais dos sistemas agroalimentares modernos.
 
 ---
 

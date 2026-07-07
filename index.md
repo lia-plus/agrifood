@@ -1,6 +1,7 @@
 <style>
   .markdown-body > header,
-  #lia-agrifood-title-h1 {
+  #lia-agrifood-title-h1,
+  .container-lg > h1:nth-child(1) {
       display: none !important;
   }
 </style>

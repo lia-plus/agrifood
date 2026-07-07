@@ -1,0 +1,12 @@
+---
+---
+@import "{{ site.theme }}";
+
+header.page-header {
+  background-image: url('{{ "/assets/banner.jpg" | relative_url }}');
+  background-size: cover;
+  background-position: center;
+  /* Bônus de legibilidade: escurece levemente a imagem para o texto branco destacar */
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: multiply;
+}

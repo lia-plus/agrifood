@@ -34,6 +34,7 @@ Professor da ESALQ/USP com foco em Inteligência Artificial, Robótica e Ciênci
 O LIA+ AgriFood nasce com forte DNA colaborativo, conectando a excelência acadêmica com as demandas de mercado e centros de pesquisa de ponta.
 
 * Universidade de São Paulo (USP)
+* Centro de Energia Nuclear na Agricultura (CENA)
 * Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ)
 * Departamento de Ciências Exatas (LCE)
 * Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq)

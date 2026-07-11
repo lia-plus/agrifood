@@ -1,16 +1,16 @@
-O LIA+ AgriFood é um núcleo de pesquisa e desenvolvimento integrado às iniciativas **IA+** dos departamentos **LCE** e **LES** da **ESALQ/USP**, com o apoio estratégico do **CNPq**. Nossa missão é atuar na fronteira do conhecimento agronômico e tecnológico, traduzindo dados complexos em soluções computacionais aplicáveis para a engenharia de toda a cadeia produtiva. Unimos o rigor analítico da universidade com a agilidade da inovação tecnológica para resolver os desafios reais dos sistemas agroalimentares modernos.
+O LIA+ AgriFood é um núcleo de pesquisa e desenvolvimento integrado às iniciativas **IA+/CNPq** dos departamentos **LCE** e **LES** da **ESALQ/USP** e **CENA/USP**. Nossa missão é atuar na fronteira do conhecimento agronômico e tecnológico, traduzindo dados complexos em soluções computacionais aplicáveis para a engenharia de toda a cadeia produtiva. Unimos o rigor analítico da universidade com a agilidade da inovação tecnológica (adotamos o sistema de gestão **Lean Startup** - MVP) para resolver os desafios reais dos sistemas agroalimentares modernos.
 
 ---
 
 ## Nossa Equipe
 
-**Prof. Dr. Gabriel Sarries**
-*Pesquisador Principal / Coordenador Geral*<br>
-Professor da ESALQ/USP com foco em Inteligência Artificial, Robótica e Ciência de Dados. É pesquisador afiliado no SHINE/Harvard University e atua no ecossistema internacional pelo CAU-USP Joint College (China). Mantém atuação estratégica em inovação tecnológica com projetos em parceria com a EMBRAPA e o CENA/USP.
-
 **Luciano Silveira**
-*Coordenador Técnico*<br>
+*Coordenador*<br>
 Cientista de Alimentos, Mestre em Física do Ambiente Agrícola e Doutor em Engenharia de Sistemas Agrícolas pela ESALQ/USP. Possui base computacional estruturada no ICMC e na Poli/USP, e está em fase final da graduação em Engenharia da Computação pela Univesp. Foca na aplicação de Ciência de Dados e engenharia de software leve e eficiente para a otimização de processos agroalimentares.
+
+**Prof. Dr. Gabriel Sarries**
+*Vice Coordenador*<br>
+Professor da ESALQ/USP com foco em Inteligência Artificial, Robótica e Ciência de Dados. É pesquisador afiliado no SHINE/Harvard University e atua no ecossistema internacional pelo CAU-USP Joint College (China). Mantém atuação estratégica em inovação tecnológica com projetos em parceria com a EMBRAPA e o CENA/USP.
 
 ---
 

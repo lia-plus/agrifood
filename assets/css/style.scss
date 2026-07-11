@@ -10,3 +10,8 @@ header.page-header {
   background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: multiply;
 }
+
+/* Esconde o botão padrão do GitHub no cabeçalho */
+.page-header .btn {
+    display: none !important;
+}

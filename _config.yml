@@ -1,3 +1,5 @@
+url: "https://lia-plus.github.io"
+baseurl: "/agrifood"
 remote_theme: pages-themes/cayman
 title: LIA+ AgriFood
 description: Laboratório de Inteligência Artificial e Tecnologias Disruptivas em Sistemas Agroalimentares.

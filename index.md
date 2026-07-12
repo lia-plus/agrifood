@@ -39,7 +39,8 @@ O LIA+ AgriFood nasce com forte DNA colaborativo, conectando a excelência acad�
 * Departamento de Ciências Exatas (LCE)
 * Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq)
 
+---
+
 <div align="center" style="font-size: 0.9em; color: #666; margin-top: 40px;">
-  <a href="https://lia-plus.github.io">← LIA+ Rede de Laboratórios</a><br><br>
   &copy; 2026 LIA+ · ESALQ/USP · CENA/USP · <a href="https://lia-plus.github.io">lia-plus.github.io</a>
 </div>

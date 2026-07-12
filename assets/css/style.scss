@@ -15,3 +15,8 @@ header.page-header {
 .page-header .btn {
     display: none !important;
 }
+
+/* Esconde o rodapé padrão do GitHub */
+.site-footer {
+    display: none !important;
+}

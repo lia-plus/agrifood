@@ -10,10 +10,12 @@ Este repositório contém o código-fonte do sub-site do LIA+ AgriFood, constru�
 
 ## Estrutura
 
-agrifood/
-├── index.md          # Página principal do laboratório
-├── _config.yml       # Configurações de rota do Jekyll
-└── assets/           # Regras de estilo CSS personalizadas
+```
+lia-plus.github.io/
+├── index.md          # Página principal
+├── _config.yml       # Configurações do Jekyll
+└── assets/           # Imagens e arquivos estáticos
+```
 
 ## Contribuindo
 

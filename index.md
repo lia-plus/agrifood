@@ -1,4 +1,4 @@
-O LIA+ AgriFood é um núcleo de pesquisa e desenvolvimento integrado às iniciativas **IA+/CNPq** dos departamentos **LCE** e **LES** da **ESALQ/USP** e **CENA/USP**. Nossa missão é atuar na fronteira do conhecimento agronômico e tecnológico, traduzindo dados complexos em soluções computacionais aplicáveis para a engenharia de toda a cadeia produtiva. Unimos o rigor analítico da universidade com a agilidade da inovação tecnológica (adotamos o sistema de gestão **Lean Startup** - MVP) para resolver os desafios reais dos sistemas agroalimentares modernos.
+O **LIA+ AgriFood** é a frente da rede **LIA+** dedicada aos sistemas agroalimentares. Nossa missão é atuar na fronteira do conhecimento agronômico e tecnológico, traduzindo dados complexos em soluções computacionais aplicáveis para a engenharia de toda a cadeia produtiva. Unimos o rigor analítico da universidade com a agilidade da inovação orientada ao mercado (adotando a filosofia **Lean Startup** e construção de MVPs) para resolver os desafios reais dos sistemas agroalimentares modernos.
 
 ---
 

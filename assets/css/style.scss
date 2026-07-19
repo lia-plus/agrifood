@@ -3,35 +3,40 @@
 @import "{{ site.theme }}";
 
 /*
-  LIA+ AgriFood — v9 FAIXA FINA + ALINHADA
-  - banner responsivo 54kb / 76kb / 90kb
-  - faixa fina 320px mobile / 360px desktop
-  - verde rgba(46,125,50,0.85)
-  - alinhado com .main-content do Cayman
+  LIA+ AgriFood — v10 FAIXA INTELIGENTE
+  - mobile 320px / tablet 380px / desktop grande 420px
+  - mostra soja/carne em tela cheia com background-position
 */
 
 header.page-header {
   position: relative;
   width: 100%;
-  min-height: 320px !important; /* faixa fina mobile */
+  min-height: 320px !important;
   padding: 40px 0 !important;
   overflow: visible;
   display: block !important;
-
   background-color: rgba(0,0,0,.28);
   background-image: url('{{ "/assets/banner_agrifood_mobile_50kb.webp" | relative_url }}');
   background-size: cover;
-  background-position: center 40%;
+  background-position: center 55% !important;
   background-blend-mode: multiply;
 }
 
 @media (min-width: 768px) {
   header.page-header {
-    min-height: 360px !important; /* faixa fina desktop - corta mais em cima/baixo */
+    min-height: 380px !important;
+    background-position: center 60% !important;
     background-image: image-set(
       url('{{ "/assets/banner_agrifood_1280_60kb.webp" | relative_url }}') type('image/webp') 1x,
       url('{{ "/assets/banner_agrifood_1600_70kb.webp" | relative_url }}') type('image/webp') 2x
     );
+  }
+}
+
+@media (min-width: 1300px) {
+  header.page-header {
+    min-height: 420px !important;
+    background-position: center 62% !important;
   }
 }
 
@@ -42,11 +47,7 @@ header.page-header::before {
   z-index: 0;
   background: linear-gradient(90deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 40%, rgba(0,0,0,.10) 100%);
 }
-
-header.page-header > * {
-  position: relative;
-  z-index: 1;
-}
+header.page-header > * { position: relative; z-index: 1; }
 
 header.page-header .project-name {
   background: rgba(46,125,50,0.85) !important;
@@ -62,10 +63,7 @@ header.page-header .project-name {
   padding: clamp(22px, 2.8vw, 44px) clamp(22px, 3.2vw, 48px) 6px clamp(22px, 3.2vw, 48px);
   font-size: clamp(28px, 2.6vw, 38px);
 }
-
-header.page-header .project-name::after {
-  display: none !important;
-}
+header.page-header .project-name::after { display: none !important; }
 
 header.page-header .project-tagline {
   opacity: 1 !important;
@@ -86,44 +84,23 @@ header.page-header .project-tagline::after {
   content: "";
   position: absolute;
   background: #A5D6A7;
-  width: 25px;
-  height: 25px;
-  bottom: -25px;
-  right: -25px;
+  width: 36px; height: 36px;
+  bottom: -36px; right: -36px;
 }
 
-/* ===== ALINHAMENTO COM .main-content ===== */
 header.page-header .project-name,
 header.page-header .project-tagline {
   margin-left: 1rem !important;
   margin-right: auto !important;
 }
-
 @media (min-width: 672px) {
   header.page-header .project-name,
-  header.page-header .project-tagline {
-    margin-left: 4rem !important;
-  }
+  header.page-header .project-tagline { margin-left: 4rem !important; }
 }
-
 @media (min-width: 1024px) {
   header.page-header .project-name,
   header.page-header .project-tagline {
-    margin-left: calc(50% - 512px + 6rem) !important; /* 50% - 416px = borda do texto */
-  }
-}
-
-@media (min-width: 768px) {
-  header.page-header .project-name {
-    padding: 32px 40px 8px 40px;
-    font-size: 32px;
-  }
-  header.page-header .project-tagline {
-    padding: 0 40px 32px 40px;
-  }
-  header.page-header .project-tagline::after {
-    width: 36px; height: 36px;
-    bottom: -36px; right: -36px;
+    margin-left: calc(50% - 512px + 6rem) !important;
   }
 }
 

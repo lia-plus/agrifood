@@ -220,12 +220,14 @@ header.page-header .project-tagline {
   /* Mesmo left do título — os dois ficam alinhados verticalmente. */
   left: 3%;
 
-  /* top: calc(50% + 52px) posiciona a tagline logo abaixo do centro:
-     50% = meio do cabeçalho (onde o topo do .project-name começa)
-     + 52px ≈ metade da altura do retângulo do título em mobile.
-     Nos breakpoints abaixo esse valor muda para 60px. */
-  top: calc(50% + 52px);
-  transform: translateY(-50%);
+  /* top: calc(50% + 44px) posiciona a tagline logo abaixo do centro:
+     50% = a linha do meio do cabeçalho (mesmo ponto de referência do título).
+     + 44px ≈ padding-top do retângulo (22px) + metade da altura da linha do título.
+     ATENÇÃO: a tagline NÃO usa transform: translateY(-50%) aqui.
+     O título usa translateY para se centralizar subindo metade da própria altura;
+     a tagline só precisa começar onde o título termina — o translateY a puxaria
+     de volta para cima, comprimindo o bloco e deslocando tudo visualmente. */
+  top: calc(50% + 44px);
 
   /* Mesmo verde do retângulo acima — parecem um bloco único. */
   background: rgba(46,125,50,.92);
@@ -282,8 +284,9 @@ header.page-header .project-tagline {
     width: 65%;
     width: clamp(320px, 65%, 580px);
     padding: 0 40px 36px;
-    /* Compensa a altura maior do título em tablet: o offset sobe para 60px. */
-    top: calc(50% + 60px);
+    /* Em tablet o título tem padding maior (36px) + fonte maior: offset cresce para 72px
+       para a tagline começar logo abaixo do retângulo, sem sobrepor. */
+    top: calc(50% + 72px);
   }
 }
 

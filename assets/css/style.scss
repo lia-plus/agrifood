@@ -52,13 +52,14 @@ header.page-header > * {
 }
 
 header.page-header .project-name {
+  background: rgba(46,125,50,0.85) !important;
   position: relative !important;
   top: auto !important;
   left: auto !important;
   transform: none !important;
   float: none !important;
 
-  background: #2E7D32 !important;
+  background: rgba(46,125,50,0.85) !important;
   color: #fff;
   margin: 0 !important;
   box-sizing: border-box;
@@ -84,7 +85,7 @@ header.page-header .project-tagline {
   transform: none !important;
   float: none !important;
 
-  background: #2E7D32 !important; /* mesmo solido do titulo, nao mais claro */
+  background: rgba(46,125,50,0.85) !important; /* mesmo solido do titulo, nao mais claro */
   color: rgba(255,255,255,.92);
   margin: 0 !important;
   margin-top: -1px !important;

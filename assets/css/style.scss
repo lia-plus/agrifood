@@ -44,7 +44,7 @@ header.page-header .project-name {
   transform: none !important;
   float: none !important;
 
-  background: #2E7D32;
+  background: #2E7D32 !important;
   color: #fff;
   margin: 0 !important;
   box-sizing: border-box;
@@ -69,7 +69,7 @@ header.page-header .project-tagline {
   transform: none !important;
   float: none !important;
 
-  background: #2E7D32; /* mesmo solido do titulo, nao mais claro */
+  background: #2E7D32 !important; /* mesmo solido do titulo, nao mais claro */
   color: rgba(255,255,255,.92);
   margin: 0 !important;
   margin-top: -1px !important;

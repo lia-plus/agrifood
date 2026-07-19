@@ -14,7 +14,10 @@ header.page-header {
   min-height: 320px !important;
   padding: 40px 0 !important;
   overflow: visible;
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
   background-color: rgba(0,0,0,.28);
   background-image: url('{{ "/assets/banner_agrifood_mobile_50kb.webp" | relative_url }}');
   background-size: cover;
@@ -54,7 +57,7 @@ header.page-header .project-name {
   position: relative !important;
   color: #fff;
   margin: 0 !important;
-  margin-top: 20px !important;
+  margin-top: 0 !important;
   box-sizing: border-box;
   text-align: left;
   font-weight: 300;

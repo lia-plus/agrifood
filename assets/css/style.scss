@@ -3,34 +3,31 @@
 @import "{{ site.theme }}";
 
 /*
-  LIA+ AgriFood — CORRIGIDO v2 (sem fenda + quadradinho no lugar)
-  Fix 1: subtitulo mais claro -> agora ambos #2E7D32 solido
-  Fix 2: quadradinho no meio -> move ::after do .project-name para .project-tagline
+  LIA+ AgriFood — v9 FAIXA FINA + ALINHADA
+  - banner responsivo 54kb / 76kb / 90kb
+  - faixa fina 320px mobile / 360px desktop
+  - verde rgba(46,125,50,0.85)
+  - alinhado com .main-content do Cayman
 */
 
 header.page-header {
   position: relative;
   width: 100%;
-  min-height: 320px; /* faixa fina mobile */
-  padding: 0;
+  min-height: 320px !important; /* faixa fina mobile */
+  padding: 40px 0 !important;
   overflow: visible;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-left: 3%;
-  gap: 0 !important;
+  display: block !important;
 
-  /* BASE - celular primeiro (54kb) */
   background-color: rgba(0,0,0,.28);
   background-image: url('{{ "/assets/banner_agrifood_mobile_50kb.webp" | relative_url }}');
   background-size: cover;
-  background-position: center;
+  background-position: center 40%;
   background-blend-mode: multiply;
 }
 
 @media (min-width: 768px) {
   header.page-header {
+    min-height: 360px !important; /* faixa fina desktop - corta mais em cima/baixo */
     background-image: image-set(
       url('{{ "/assets/banner_agrifood_1280_60kb.webp" | relative_url }}') type('image/webp') 1x,
       url('{{ "/assets/banner_agrifood_1600_70kb.webp" | relative_url }}') type('image/webp') 2x
@@ -54,74 +51,35 @@ header.page-header > * {
 header.page-header .project-name {
   background: rgba(46,125,50,0.85) !important;
   position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  transform: none !important;
-  float: none !important;
-
-  background: rgba(46,125,50,0.85) !important;
   color: #fff;
   margin: 0 !important;
+  margin-top: 20px !important;
   box-sizing: border-box;
   text-align: left;
   font-weight: 300;
   line-height: 1.1;
-
-  width: clamp(300px, 40%, 580px);
+  width: clamp(300px, 38%, 520px) !important;
   padding: clamp(22px, 2.8vw, 44px) clamp(22px, 3.2vw, 48px) 6px clamp(22px, 3.2vw, 48px);
   font-size: clamp(28px, 2.6vw, 38px);
 }
 
-/* REMOVE quadradinho do titulo */
 header.page-header .project-name::after {
   display: none !important;
 }
 
 header.page-header .project-tagline {
-  opacity: 1 !important; /* FIX: Cayman coloca opacity 0.7 aqui, deixa transparente */
+  opacity: 1 !important;
   position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  transform: none !important;
-  float: none !important;
-
-  background: rgba(46,125,50,0.85) !important; /* mesmo solido do titulo, nao mais claro */
+  background: rgba(46,125,50,0.85) !important;
   color: rgba(255,255,255,.92);
   margin: 0 !important;
   margin-top: -1px !important;
   text-align: left;
   box-sizing: border-box;
   line-height: 1.4;
-
-  width: clamp(300px, 40%, 580px);
+  width: clamp(300px, 38%, 520px) !important;
   padding: 0 clamp(22px, 3.2vw, 48px) clamp(20px, 2.8vw, 32px) clamp(22px, 3.2vw, 48px);
   font-size: clamp(13px, 1.1vw, 15.5px);
-}
-
-/* QUADRADINHO AGORA NO SUBTITULO = canto inferior direito do bloco todo */
-
-/* ===== ALINHAMENTO COM .main-content DO CAYMAN ===== */
-header.page-header .project-name,
-header.page-header .project-tagline {
-  margin-left: 1rem !important;
-  margin-right: auto !important;
-  left: auto !important;
-  right: auto !important;
-}
-
-@media (min-width: 672px) {
-  header.page-header .project-name,
-  header.page-header .project-tagline {
-    margin-left: 4rem !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  header.page-header .project-name,
-  header.page-header .project-tagline {
-    /* alinha exatamente com o texto do .main-content */
-    margin-left: calc(50% - 416px) !important;
-  }
 }
 
 header.page-header .project-tagline::after {
@@ -134,25 +92,11 @@ header.page-header .project-tagline::after {
   right: -25px;
 }
 
-@media (min-width: 768px) {
-  header.page-header { min-height: 460px; }
-  header.page-header .project-name {
-    width: clamp(320px, 65%, 580px);
-    padding: 36px 40px 8px 40px;
-    font-size: 32px;
-  }
-  header.page-header .project-tagline {
-    width: clamp(320px, 65%, 580px);
-    padding: 0 40px 36px 40px;
-  }
-  
-/* ===== ALINHAMENTO COM .main-content DO CAYMAN ===== */
+/* ===== ALINHAMENTO COM .main-content ===== */
 header.page-header .project-name,
 header.page-header .project-tagline {
   margin-left: 1rem !important;
   margin-right: auto !important;
-  left: auto !important;
-  right: auto !important;
 }
 
 @media (min-width: 672px) {
@@ -165,31 +109,22 @@ header.page-header .project-tagline {
 @media (min-width: 1024px) {
   header.page-header .project-name,
   header.page-header .project-tagline {
-    /* alinha exatamente com o texto do .main-content */
-    margin-left: calc(50% - 416px) !important;
+    margin-left: calc(50% - 512px + 6rem) !important; /* 50% - 416px = borda do texto */
   }
 }
 
-header.page-header .project-tagline::after {
-    width: 40px; height: 40px;
-    bottom: -40px; right: -40px;
+@media (min-width: 768px) {
+  header.page-header .project-name {
+    padding: 32px 40px 8px 40px;
+    font-size: 32px;
   }
-}
-
-@media (min-width: 992px) {
-  header.page-header .project-name,
   header.page-header .project-tagline {
-    width: clamp(340px, 60%, 580px);
+    padding: 0 40px 32px 40px;
   }
-  header.page-header .project-name { font-size: 35px; }
-}
-
-@media (min-width: 1200px) {
-  header.page-header .project-name,
-  header.page-header .project-tagline {
-    width: clamp(380px, 40%, 600px);
+  header.page-header .project-tagline::after {
+    width: 36px; height: 36px;
+    bottom: -36px; right: -36px;
   }
-  header.page-header .project-name { font-size: 38px; }
 }
 
 .page-header .btn { display: none !important; }

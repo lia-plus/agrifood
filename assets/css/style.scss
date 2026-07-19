@@ -9,8 +9,6 @@
 */
 
 header.page-header {
-  background: rgba(0,0,0,.28) url('{{ "/assets/banner.jpg" | relative_url }}') center/cover;
-  background-blend-mode: multiply;
   position: relative;
   width: 100%;
   min-height: 420px;
@@ -22,6 +20,22 @@ header.page-header {
   align-items: flex-start;
   padding-left: 3%;
   gap: 0 !important;
+
+  /* BASE - celular primeiro (54kb) */
+  background-color: rgba(0,0,0,.28);
+  background-image: url('{{ "/assets/banner_agrifood_mobile_50kb.webp" | relative_url }}');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+@media (min-width: 768px) {
+  header.page-header {
+    background-image: image-set(
+      url('{{ "/assets/banner_agrifood_1280_60kb.webp" | relative_url }}') type('image/webp') 1x,
+      url('{{ "/assets/banner_agrifood_1600_70kb.webp" | relative_url }}') type('image/webp') 2x
+    );
+  }
 }
 
 header.page-header::before {

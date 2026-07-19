@@ -63,6 +63,7 @@ header.page-header .project-name::after {
 }
 
 header.page-header .project-tagline {
+  opacity: 1 !important; /* FIX: Cayman coloca opacity 0.7 aqui, deixa transparente */
   position: relative !important;
   top: auto !important;
   left: auto !important;

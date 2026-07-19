@@ -11,7 +11,7 @@
 header.page-header {
   position: relative;
   width: 100%;
-  min-height: 420px;
+  min-height: 320px; /* faixa fina mobile */
   padding: 0;
   overflow: visible;
   display: flex !important;
@@ -99,6 +99,31 @@ header.page-header .project-tagline {
 }
 
 /* QUADRADINHO AGORA NO SUBTITULO = canto inferior direito do bloco todo */
+
+/* ===== ALINHAMENTO COM .main-content DO CAYMAN ===== */
+header.page-header .project-name,
+header.page-header .project-tagline {
+  margin-left: 1rem !important;
+  margin-right: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+@media (min-width: 672px) {
+  header.page-header .project-name,
+  header.page-header .project-tagline {
+    margin-left: 4rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  header.page-header .project-name,
+  header.page-header .project-tagline {
+    /* alinha exatamente com o texto do .main-content */
+    margin-left: calc(50% - 416px) !important;
+  }
+}
+
 header.page-header .project-tagline::after {
   content: "";
   position: absolute;
@@ -120,7 +145,32 @@ header.page-header .project-tagline::after {
     width: clamp(320px, 65%, 580px);
     padding: 0 40px 36px 40px;
   }
-  header.page-header .project-tagline::after {
+  
+/* ===== ALINHAMENTO COM .main-content DO CAYMAN ===== */
+header.page-header .project-name,
+header.page-header .project-tagline {
+  margin-left: 1rem !important;
+  margin-right: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+@media (min-width: 672px) {
+  header.page-header .project-name,
+  header.page-header .project-tagline {
+    margin-left: 4rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  header.page-header .project-name,
+  header.page-header .project-tagline {
+    /* alinha exatamente com o texto do .main-content */
+    margin-left: calc(50% - 416px) !important;
+  }
+}
+
+header.page-header .project-tagline::after {
     width: 40px; height: 40px;
     bottom: -40px; right: -40px;
   }

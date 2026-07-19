@@ -93,89 +93,57 @@ header.page-header > * {
 
 
 /* ════════════════════════════════════════════════════════════════════════
-   BLOCO 3 — O RETÂNGULO VERDE COM O TÍTULO
+   BLOCO 3 — O RETÂNGULO VERDE COM TÍTULO E TAGLINE
    Seletor: header.page-header .project-name
-   O tema Cayman já cria um <h1 class="project-name"> com o título
-   definido em _config.yml (title: LIA+ AgriFood).
-   Aqui transformamos esse h1 no retângulo sólido verde que aparece
-   sobre a foto.
+   O tema Cayman gera na ordem: <h1 class="project-name"> e depois
+   <p class="project-tagline">. Ambos são filhos diretos do <header>.
+   
+   ESTRATÉGIA: o retângulo verde é desenhado no .project-name, mas a
+   tagline (que vem depois no HTML) é puxada para DENTRO dele via
+   position:absolute — o .project-name vira o contexto de posicionamento
+   da tagline. Assim os dois compartilham o mesmo fundo verde e formam
+   um bloco único, como no print de referência.
    ════════════════════════════════════════════════════════════════════════ */
 header.page-header .project-name {
 
-  /* Retira o elemento do fluxo normal da página e o posiciona
-     manualmente em relação ao cabeçalho (que tem position: relative). */
+  /* Retira o elemento do fluxo normal e o posiciona em relação ao
+     cabeçalho (que tem position: relative). */
   position: absolute;
 
-  /* Centralização vertical: top:50% sobe o topo do elemento até o
-     meio do cabeçalho; translateY(-50%) sobe mais metade da altura
-     do próprio elemento. Resultado: o retângulo fica perfeitamente
-     centrado na vertical. */
+  /* Centralização vertical perfeita: top:50% leva o topo até o meio
+     do cabeçalho; translateY(-50%) sobe mais metade da própria altura.
+     Como a tagline vai ficar dentro deste elemento, a altura total
+     (título + tagline + padding) é considerada automaticamente. */
   top: 50%;
   transform: translateY(-50%);
 
-  /* Distância da borda esquerda: 3% da largura do cabeçalho.
-     Era o bug que existia antes: estava usando calc() que jogava
-     o retângulo para a direita. */
+  /* Ancorado à esquerda, igual ao .caption da Intel. */
   left: 3%;
 
-  /* Cor de fundo do retângulo. rgba(46,125,50,.92) é o verde
-     "Material Design Green 800" com 92% de opacidade (quase sólido,
-     mas deixa levemente transparecer a foto ao fundo).
-     Para deixar totalmente sólido: background: #2E7D32; */
+  /* Verde sólido do retângulo. Para cor totalmente opaca: #2E7D32 */
   background: rgba(46,125,50,.92);
 
-  /* Texto branco sobre o fundo verde. */
+  /* Contexto de posicionamento para a tagline (position:absolute dentro). */
+  /* position:absolute já está declarado acima — mantém esse papel. */
+
   color: #fff;
-
-  /* Remove margens automáticas que o tema Cayman aplica ao h1. */
   margin: 0;
-
-  /* Inclui padding e borda no cálculo da largura (comportamento padrão
-     em CSS moderno, mas explicitado aqui para segurança). */
   box-sizing: border-box;
-
-  /* Alinha o texto à esquerda dentro do retângulo,
- */
   text-align: left;
-
-  /* Peso da fonte leve (300).
-     O Cayman usa por padrão 700 (negrito); aqui suavizamos. */
   font-weight: 300;
-
-  /* Espaçamento entre linhas compacto — importante para títulos grandes
-     não ficarem com muito espaço vertical. */
   line-height: 1.1;
 
-  /* ── Valores base (mobile, sem @media) ──────────────────────────────
-     As duas linhas abaixo (width: 90% e padding: 20px) seriam os
-     valores fixos para mobile. Elas existem aqui como "fallback"
-     para navegadores antigos que não entendem clamp().
-     Nos navegadores modernos, as linhas com clamp() logo abaixo
-     sobrescrevem estas. */
+  /* Fallback mobile (navegadores sem clamp()): */
   width: 90%;
-  padding: 20px;
   font-size: 28px;
 
-  /* ── Valores responsivos com clamp() ────────────────────────────────
-     clamp(mínimo, preferido, máximo):
-       - O valor "preferido" é calculado dinamicamente conforme a tela.
-       - Nunca ultrapassa o máximo nem fica abaixo do mínimo.
-     
-     width: clamp(300px, 40%, 580px)
-       Em telas muito estreitas  →  mínimo 300px
-       Em telas comuns           →  40% da largura do cabeçalho
-       Em telas muito largas     →  máximo 580px
-       (Nos breakpoints abaixo o "40%" muda para 65%, 60%, etc.)
+  /* padding-bottom: 0 porque a tagline vai ocupar o espaço inferior
+     com seu próprio padding — evita duplo espaçamento. */
+  padding: 20px 20px 0 20px;
 
-     padding: clamp(22px, 2.8vw, 44px) clamp(22px, 3.2vw, 48px)
-       Espaçamento interno vertical e horizontal que cresce com a tela.
-       Em mobile: ~22px; em desktop grande: ~44-48px.
-
-     font-size: clamp(28px, 2.6vw, 38px)
-       Tamanho do título que cresce suavemente com a largura da tela.
-       Em mobile: mínimo 28px; em desktop: máximo 38px. */
+  /* Valores responsivos: */
   width: clamp(300px, 40%, 580px);
-  padding: clamp(22px, 2.8vw, 44px) clamp(22px, 3.2vw, 48px);
+  padding: clamp(22px, 2.8vw, 44px) clamp(22px, 3.2vw, 48px) 0;
   font-size: clamp(28px, 2.6vw, 38px);
 }
 
@@ -205,49 +173,50 @@ header.page-header .project-name::after {
 
 
 /* ════════════════════════════════════════════════════════════════════════
-   BLOCO 5 — SUBTÍTULO / TAGLINE (linha abaixo do retângulo verde)
+   BLOCO 5 — SUBTÍTULO / TAGLINE (dentro do retângulo verde)
    Seletor: header.page-header .project-tagline
-   O tema Cayman cria um <p class="project-tagline"> com o valor de
-   "description" em _config.yml.
-   Aqui o posicionamos logo abaixo do retângulo, com o mesmo fundo
-   verde e a mesma largura, criando a impressão de uma extensão do
-   bloco principal (sem borda superior, só padding inferior).
+   O tema Cayman gera o <p class="project-tagline"> como irmão do h1,
+   fora do retângulo no HTML. Aqui o "puxamos" para dentro do retângulo
+   via position:absolute, usando o .project-name como referência.
+
+   COMO FUNCIONA:
+     - position: absolute  →  sai do fluxo e se posiciona em relação
+                               ao .project-name (que é position:absolute
+                               e portanto contexto de posicionamento)
+     - top: 100%           →  começa exatamente na borda inferior do título
+     - left: 0 / right: 0  →  mesma largura do retângulo, sem precisar
+                               repetir o valor de width
+   Resultado: título e tagline compartilham o mesmo fundo verde e formam
+   visualmente um único bloco, independente da resolução.
    ════════════════════════════════════════════════════════════════════════ */
 header.page-header .project-tagline {
 
+  /* Posiciona em relação ao .project-name (pai de posicionamento). */
   position: absolute;
 
-  /* Mesmo left do título — os dois ficam alinhados verticalmente. */
-  left: 3%;
+  /* Começa exatamente onde o retângulo do título termina. */
+  top: 100%;
 
-  /* top: calc(50% + 44px) posiciona a tagline logo abaixo do centro:
-     50% = a linha do meio do cabeçalho (mesmo ponto de referência do título).
-     + 44px ≈ padding-top do retângulo (22px) + metade da altura da linha do título.
-     ATENÇÃO: a tagline NÃO usa transform: translateY(-50%) aqui.
-     O título usa translateY para se centralizar subindo metade da própria altura;
-     a tagline só precisa começar onde o título termina — o translateY a puxaria
-     de volta para cima, comprimindo o bloco e deslocando tudo visualmente. */
-  top: calc(50% + 44px);
+  /* Cobre toda a largura do retângulo pai — sem precisar repetir width. */
+  left: 0;
+  right: 0;
 
-  /* Mesmo verde do retângulo acima — parecem um bloco único. */
+  /* Mesmo fundo verde — continuação visual do retângulo. */
   background: rgba(46,125,50,.92);
 
-  /* Branco levemente transparente (92%) para suavizar em relação
-     ao título totalmente branco. */
+  /* Branco levemente suavizado para diferenciar do título. */
   color: rgba(255,255,255,.92);
 
   margin: 0;
-  text-align: left;
   box-sizing: border-box;
-  line-height: 1.4;     /* mais espaçado que o título (1.1), pois é texto corrido */
+  text-align: left;
+  line-height: 1.4;  /* mais espaçado que o título (1.1), texto corrido */
 
-  /* Valores de fallback (mobile, navegadores antigos): */
-  width: 90%;
-  padding: 0 20px 20px; /* sem padding-top: a tagline "cola" no título */
+  /* Fallback mobile: */
+  padding: 0 20px 20px;
   font-size: 14px;
 
-  /* Valores responsivos com clamp(): */
-  width: clamp(300px, 40%, 580px);
+  /* Valores responsivos — só padding e font-size, width herdada do pai: */
   padding: 0 clamp(22px, 3.2vw, 48px) clamp(20px, 2.8vw, 32px);
   font-size: clamp(13px, 1.1vw, 15.5px);
 }
@@ -281,21 +250,17 @@ header.page-header .project-tagline {
   }
 
   header.page-header .project-tagline {
-    width: 65%;
-    width: clamp(320px, 65%, 580px);
+    /* width e posição herdados do .project-name — só ajustamos o padding. */
     padding: 0 40px 36px;
-    /* Em tablet o título tem padding maior (36px) + fonte maior: offset cresce para 72px
-       para a tagline começar logo abaixo do retângulo, sem sobrepor. */
-    top: calc(50% + 72px);
   }
 }
 
 /* ── Laptop (≥ 992px) ────────────────────────────────────────────── */
 @media (min-width: 992px) {
 
-  header.page-header .project-name,
-  header.page-header .project-tagline {
-    /* Retângulo ligeiramente mais estreito (60%). */
+  header.page-header .project-name {
+    /* Retângulo ligeiramente mais estreito (60%).
+       A tagline herda a largura automaticamente via left:0/right:0. */
     width: 60%;
     width: clamp(340px, 60%, 580px);
   }
@@ -308,11 +273,10 @@ header.page-header .project-tagline {
 /* ── Desktop largo (≥ 1200px) — o efeito mais visível ────── */
 @media (min-width: 1200px) {
 
-  header.page-header .project-name,
-  header.page-header .project-tagline {
-    /* Aqui está o segredo visual: em telas largas o retângulo ocupa
-       apenas 40% da largura, ficando claramente "flutuando" à esquerda
-       sobre a foto. */
+  header.page-header .project-name {
+    /* Em telas largas o retângulo ocupa apenas 40% da largura,
+       ficando "flutuando" à esquerda sobre a foto.
+       A tagline herda a largura automaticamente. */
     width: 40%;
     width: clamp(380px, 40%, 600px);
   }

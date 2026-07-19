@@ -2,21 +2,333 @@
 ---
 @import "{{ site.theme }}";
 
+/*
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  LIA+ AgriFood — cabeçalho responsivo    ║
+  ║  Arquivo: assets/css/style.scss                                      ║
+  ║  Como o Jekyll usa este arquivo:                                      ║
+  ║    O bloco "---" no topo (front matter vazio) diz ao Jekyll para      ║
+  ║    processar este arquivo. @import "{{ site.theme }}" puxa o CSS      ║
+  ║    base do tema Cayman (que define fontes, cores padrão, etc.).       ║
+  ║    Tudo abaixo sobrescreve ou complementa esse CSS base.              ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+*/
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   BLOCO 1 — O CONTAINER PRINCIPAL DO CABEÇALHO
+   Seletor: header.page-header
+   O tema Cayman já gera um <header class="page-header"> automático.
+   Aqui transformamos ele num banner de foto full-bleed (cobre toda a
+   largura).
+   ════════════════════════════════════════════════════════════════════════ */
 header.page-header {
-  background-image: url('{{ "/assets/banner.jpg" | relative_url }}');
-  background-size: cover;
-  background-position: center;
-  /* Bônus de legibilidade: escurece levemente a imagem para o texto branco destacar */
-  background-color: rgba(0, 0, 0, 0.4);
+
+  /* FUNDO: foto + escurecimento simultâneo numa só linha.
+     "rgba(0,0,0,.28)" é uma cor preta com 28% de opacidade (o "véu"),
+     url(...) é a imagem de fundo, "center/cover" faz ela centralizar
+     e cobrir todo o espaço sem distorcer.
+     background-blend-mode: multiply mistura a cor preta com a foto,
+     escurecendo-a levemente para o texto branco se destacar melhor. */
+  background: rgba(0,0,0,.28) url('{{ "/assets/banner.jpg" | relative_url }}') center/cover;
   background-blend-mode: multiply;
+
+  /* position: relative é obrigatório para que o ::before (gradiente lateral)
+     e o .project-name (retângulo) possam usar position: absolute
+     em relação a este cabeçalho e não à página inteira. */
+  position: relative;
+
+  /* O cabeçalho ocupa toda a largura da tela. */
+  width: 100%;
+
+  /* Altura mínima do banner em telas pequenas (mobile).
+     Em tablets e desktops, o @media mais abaixo aumenta para 460px. */
+  min-height: 420px;
+
+  /* Remove o padding interno padrão do tema Cayman,
+     que empurraria o conteúdo para longe das bordas. */
+  padding: 0;
+
+  /* overflow: visible permite que o quadradinho decorativo (::after
+     no .project-name) apareça fora dos limites do retângulo verde,
+     sem ser cortado pelo cabeçalho. */
+  overflow: visible;
 }
 
-/* Esconde o botão padrão do GitHub no cabeçalho */
-.page-header .btn {
-    display: none !important;
+
+/* ════════════════════════════════════════════════════════════════════════
+   BLOCO 2 — GRADIENTE LATERAL SOBRE A FOTO
+   Seletor: header.page-header::before
+   Este pseudo-elemento é uma camada invisível que cobre toda a foto
+   com um gradiente da esquerda para a direita, escurecendo mais à
+   esquerda (onde fica o retângulo) e clarareando à direita.
+   ════════════════════════════════════════════════════════════════════════ */
+header.page-header::before {
+  content: "";           /* pseudo-elementos precisam de content para existir */
+  position: absolute;
+  inset: 0;              /* atalho para top:0; right:0; bottom:0; left:0 — cobre tudo */
+
+  /* Gradiente horizontal (90deg = esquerda → direita):
+       0%  → preto com 35% de opacidade  (lado esquerdo, mais escuro)
+      40%  → preto com 15% de opacidade  (centro-esquerda, suave)
+     100%  → preto com 10% de opacidade  (lado direito, quase transparente)
+     Resultado: a esquerda fica levemente mais escura, criando um "palco"
+     para o retângulo verde se destacar da foto. */
+  z-index: 0; /* garante que fique atrás do verde */ 
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.35) 0%,
+    rgba(0,0,0,.15) 40%,
+    rgba(0,0,0,.10) 100%
+  );
 }
 
-/* Esconde o rodapé padrão do GitHub */
-.site-footer {
-    display: none !important;
+/* Garante que todos os filhos diretos do cabeçalho (o retângulo verde,
+   o subtítulo) fiquem acima do gradiente ::before.
+   Sem isso, o gradiente cobriria o texto. */
+header.page-header > * {
+  position: relative;
+  z-index: 1;
 }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   BLOCO 3 — O RETÂNGULO VERDE COM O TÍTULO
+   Seletor: header.page-header .project-name
+   O tema Cayman já cria um <h1 class="project-name"> com o título
+   definido em _config.yml (title: LIA+ AgriFood).
+   Aqui transformamos esse h1 no retângulo sólido verde que aparece
+   sobre a foto.
+   ════════════════════════════════════════════════════════════════════════ */
+header.page-header .project-name {
+
+  /* Retira o elemento do fluxo normal da página e o posiciona
+     manualmente em relação ao cabeçalho (que tem position: relative). */
+  position: absolute;
+
+  /* Centralização vertical: top:50% sobe o topo do elemento até o
+     meio do cabeçalho; translateY(-50%) sobe mais metade da altura
+     do próprio elemento. Resultado: o retângulo fica perfeitamente
+     centrado na vertical. */
+  top: 50%;
+  transform: translateY(-50%);
+
+  /* Distância da borda esquerda: 3% da largura do cabeçalho.
+     Era o bug que existia antes: estava usando calc() que jogava
+     o retângulo para a direita. */
+  left: 3%;
+
+  /* Cor de fundo do retângulo. rgba(46,125,50,.92) é o verde
+     "Material Design Green 800" com 92% de opacidade (quase sólido,
+     mas deixa levemente transparecer a foto ao fundo).
+     Para deixar totalmente sólido: background: #2E7D32; */
+  background: rgba(46,125,50,.92);
+
+  /* Texto branco sobre o fundo verde. */
+  color: #fff;
+
+  /* Remove margens automáticas que o tema Cayman aplica ao h1. */
+  margin: 0;
+
+  /* Inclui padding e borda no cálculo da largura (comportamento padrão
+     em CSS moderno, mas explicitado aqui para segurança). */
+  box-sizing: border-box;
+
+  /* Alinha o texto à esquerda dentro do retângulo,
+ */
+  text-align: left;
+
+  /* Peso da fonte leve (300).
+     O Cayman usa por padrão 700 (negrito); aqui suavizamos. */
+  font-weight: 300;
+
+  /* Espaçamento entre linhas compacto — importante para títulos grandes
+     não ficarem com muito espaço vertical. */
+  line-height: 1.1;
+
+  /* ── Valores base (mobile, sem @media) ──────────────────────────────
+     As duas linhas abaixo (width: 90% e padding: 20px) seriam os
+     valores fixos para mobile. Elas existem aqui como "fallback"
+     para navegadores antigos que não entendem clamp().
+     Nos navegadores modernos, as linhas com clamp() logo abaixo
+     sobrescrevem estas. */
+  width: 90%;
+  padding: 20px;
+  font-size: 28px;
+
+  /* ── Valores responsivos com clamp() ────────────────────────────────
+     clamp(mínimo, preferido, máximo):
+       - O valor "preferido" é calculado dinamicamente conforme a tela.
+       - Nunca ultrapassa o máximo nem fica abaixo do mínimo.
+     
+     width: clamp(300px, 40%, 580px)
+       Em telas muito estreitas  →  mínimo 300px
+       Em telas comuns           →  40% da largura do cabeçalho
+       Em telas muito largas     →  máximo 580px
+       (Nos breakpoints abaixo o "40%" muda para 65%, 60%, etc.)
+
+     padding: clamp(22px, 2.8vw, 44px) clamp(22px, 3.2vw, 48px)
+       Espaçamento interno vertical e horizontal que cresce com a tela.
+       Em mobile: ~22px; em desktop grande: ~44-48px.
+
+     font-size: clamp(28px, 2.6vw, 38px)
+       Tamanho do título que cresce suavemente com a largura da tela.
+       Em mobile: mínimo 28px; em desktop: máximo 38px. */
+  width: clamp(300px, 40%, 580px);
+  padding: clamp(22px, 2.8vw, 44px) clamp(22px, 3.2vw, 48px);
+  font-size: clamp(28px, 2.6vw, 38px);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   BLOCO 4 — QUADRADINHO DECORATIVO NO CANTO DO RETÂNGULO
+   Seletor: header.page-header .project-name::after
+   Um pequeno quadrado colorido que
+   "sai" do canto inferior direito do retângulo principal.
+   Usamos verde mais claro (#81C784 = Material Design Green 300).
+   ════════════════════════════════════════════════════════════════════════ */
+header.page-header .project-name::after {
+  content: "";           /* necessário para o pseudo-elemento existir */
+  position: absolute;
+  background: #81C784;  /* verde claro — para mudar a cor, troque este valor */
+
+  /* Tamanho do quadradinho (mobile): 25×25 px */
+  width: 25px;
+  height: 25px;
+
+  /* Posição: 25px abaixo e 25px à direita do retângulo verde.
+     Como é position:absolute relativo ao .project-name, valores
+     negativos fazem o elemento "sair" do retângulo. */
+  bottom: -25px;
+  right:  -25px;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   BLOCO 5 — SUBTÍTULO / TAGLINE (linha abaixo do retângulo verde)
+   Seletor: header.page-header .project-tagline
+   O tema Cayman cria um <p class="project-tagline"> com o valor de
+   "description" em _config.yml.
+   Aqui o posicionamos logo abaixo do retângulo, com o mesmo fundo
+   verde e a mesma largura, criando a impressão de uma extensão do
+   bloco principal (sem borda superior, só padding inferior).
+   ════════════════════════════════════════════════════════════════════════ */
+header.page-header .project-tagline {
+
+  position: absolute;
+
+  /* Mesmo left do título — os dois ficam alinhados verticalmente. */
+  left: 3%;
+
+  /* top: calc(50% + 52px) posiciona a tagline logo abaixo do centro:
+     50% = meio do cabeçalho (onde o topo do .project-name começa)
+     + 52px ≈ metade da altura do retângulo do título em mobile.
+     Nos breakpoints abaixo esse valor muda para 60px. */
+  top: calc(50% + 52px);
+  transform: translateY(-50%);
+
+  /* Mesmo verde do retângulo acima — parecem um bloco único. */
+  background: rgba(46,125,50,.92);
+
+  /* Branco levemente transparente (92%) para suavizar em relação
+     ao título totalmente branco. */
+  color: rgba(255,255,255,.92);
+
+  margin: 0;
+  text-align: left;
+  box-sizing: border-box;
+  line-height: 1.4;     /* mais espaçado que o título (1.1), pois é texto corrido */
+
+  /* Valores de fallback (mobile, navegadores antigos): */
+  width: 90%;
+  padding: 0 20px 20px; /* sem padding-top: a tagline "cola" no título */
+  font-size: 14px;
+
+  /* Valores responsivos com clamp(): */
+  width: clamp(300px, 40%, 580px);
+  padding: 0 clamp(22px, 3.2vw, 48px) clamp(20px, 2.8vw, 32px);
+  font-size: clamp(13px, 1.1vw, 15.5px);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   BLOCO 6 — BREAKPOINTS RESPONSIVOS
+   Abaixo: ajustes para telas maiores (tablet, laptop, desktop largo).
+   O retângulo muda de largura em cada
+   faixa de tela, mas sempre fica ancorado à esquerda (left: 3%).
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≥ 768px) ─────────────────────────────────────────────── */
+@media (min-width: 768px) {
+
+  /* Banner mais alto em telas maiores. */
+  header.page-header { min-height: 460px; }
+
+  header.page-header .project-name {
+    /* Retângulo mais largo (65%) e com mais padding interno. */
+    width: 65%;
+    width: clamp(320px, 65%, 580px); /* sobrescreve a linha acima em navegadores modernos */
+    padding: 36px 40px;
+    font-size: 32px;
+  }
+
+  header.page-header .project-name::after {
+    /* Quadradinho maior (40×40 px) em telas maiores. */
+    width: 40px; height: 40px;
+    bottom: -40px; right: -40px;
+  }
+
+  header.page-header .project-tagline {
+    width: 65%;
+    width: clamp(320px, 65%, 580px);
+    padding: 0 40px 36px;
+    /* Compensa a altura maior do título em tablet: o offset sobe para 60px. */
+    top: calc(50% + 60px);
+  }
+}
+
+/* ── Laptop (≥ 992px) ────────────────────────────────────────────── */
+@media (min-width: 992px) {
+
+  header.page-header .project-name,
+  header.page-header .project-tagline {
+    /* Retângulo ligeiramente mais estreito (60%). */
+    width: 60%;
+    width: clamp(340px, 60%, 580px);
+  }
+
+  header.page-header .project-name {
+    font-size: 35px;
+  }
+}
+
+/* ── Desktop largo (≥ 1200px) — o efeito mais visível ────── */
+@media (min-width: 1200px) {
+
+  header.page-header .project-name,
+  header.page-header .project-tagline {
+    /* Aqui está o segredo visual: em telas largas o retângulo ocupa
+       apenas 40% da largura, ficando claramente "flutuando" à esquerda
+       sobre a foto. */
+    width: 40%;
+    width: clamp(380px, 40%, 600px);
+  }
+
+  header.page-header .project-name {
+    font-size: 38px; /* título maior em desktop largo */
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   BLOCO 7 — LIMPEZA DE ELEMENTOS PADRÃO DO TEMA CAYMAN
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Esconde os botões "Download ZIP / View on GitHub" que o Cayman
+   gera automaticamente no cabeçalho quando show_downloads não está
+   explicitamente desativado no _config.yml. */
+.page-header .btn { display: none !important; }
+
+/* Esconde o rodapé padrão do tema ("Hosted on GitHub Pages").
+   Substitua por um rodapé personalizado no index.md se quiser. */
+.site-footer { display: none !important; }
